@@ -2,8 +2,30 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
+import static tests.TestData.uploadPicture;
+
 
 public class RegistrationWithPageObjectTests extends TestBase {
+
+    TestDataGenerator data = new TestDataGenerator();
+    String userName = data.setFirstName();
+    String lastName = data.setLastName();
+    String userEmail = data.getEmail();
+    String gender = data.getGender();
+    String phoneNumber = data.getPhoneNumber();
+    String address = data.getAddress();
+    String subjects = data.getSubject();
+    String hobbies = data.getHobby();
+
+    Date birthday = data.getBirthday();
+    String dayOfBirth = data.getDayOfBirth(birthday);
+    String monthOfBirth = data.getMonthOfBirth(birthday);
+    String yearOfBirth = data.getYearOfBirth(birthday);
+
+    String state = data.getState();
+    String city = data.getCity(state);
 
 
     @Test
@@ -11,55 +33,55 @@ public class RegistrationWithPageObjectTests extends TestBase {
 
         registrationPage.openPage()
                 .removeAd()
-                .setFirstName("Kostya")
-                .setLastName("Ivanov")
-                .setEmail("kostya@ivanov.com")
-                .setGender("Male")
-                .setNumber("1234567893")
-                .setBirthDate("25", "March", "2005")
-                .setSubjects("Eng")
-                .setHobbies("Music")
-                .uploadPicture("Photo.jpeg")
-                .setAddress("123 Main St.")
-                .selectStateAndCity("Haryana", "Karnal")
+                .setFirstName(userName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGender(gender)
+                .setNumber(phoneNumber)
+                .setBirthDate(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
+                .uploadPicture(uploadPicture)
+                .setAddress(address)
+                .selectStateAndCity(state, city)
                 .submitForm();
 
         registrationPage.verifyResultsModalAppears()
-                .verifyResult("Student Name", "Kostya Ivanov")
-                .verifyResult("Student Email", "kostya@ivanov.com")
-                .verifyResult("Gender", "Male")
-                .verifyResult("Mobile", "1234567893")
-                .verifyResult("Date of Birth", "25 March,2005")
-                .verifyResult("Subjects", "English")
-                .verifyResult("Hobbies", "Music")
-                .verifyResult("Picture", "Photo.jpeg")
-                .verifyResult("Address", "123 Main St.")
-                .verifyResult("State and City", "Haryana Karnal");
+                .verifyResult("Student Name", userName + " " + lastName)
+                .verifyResult("Student Email", userEmail)
+                .verifyResult("Gender", gender)
+                .verifyResult("Mobile", phoneNumber)
+                .verifyResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .verifyResult("Subjects", subjects)
+                .verifyResult("Hobbies", hobbies)
+                .verifyResult("Picture", uploadPicture)
+                .verifyResult("Address", address)
+                .verifyResult("State and City", state + " " + city);
     }
     @Test
     void successfulMinFormTest() {
 
         registrationPage.openPage()
                 .removeAd()
-                .setFirstName("Kostya")
-                .setLastName("Ivanov")
-                .setGender("Male")
-                .setNumber("1234567893")
+                .setFirstName(userName)
+                .setLastName(lastName)
+                .setGender(gender)
+                .setNumber(phoneNumber)
                 .submitForm();
 
         registrationPage.verifyResultsModalAppears()
-                .verifyResult("Student Name", "Kostya Ivanov")
-                .verifyResult("Gender", "Male")
-                .verifyResult("Mobile", "1234567893");
+                .verifyResult("Student Name", userName + " " + lastName)
+                .verifyResult("Gender", gender)
+                .verifyResult("Mobile", phoneNumber);
     }
     @Test
     void negativeMinFormTest() {
 
         registrationPage.openPage()
                 .removeAd()
-                .setFirstName("Kostya")
-                .setLastName("Ivanov")
-                .setGender("Male")
+                .setFirstName(userName)
+                .setLastName(lastName)
+                .setGender(gender)
                 .setNumber("")
                 .submitForm();
 
