@@ -55,7 +55,10 @@ public class AviasalesParameterizedTests {
                 .shouldBe(sizeGreaterThan(0));
     }
 
-
+    @CsvSource(value = {
+            "Москва, .mapboxgl-canvas",
+            "Казань, .mapboxgl-canvas"
+    })
     @CsvFileSource(resources = "/test_data/successfulSearchHotelsAtCityTest.csv")
     @ParameterizedTest(name = "Для поискового запроса {0} должна отображаться карта {1}")
     @Tags({
