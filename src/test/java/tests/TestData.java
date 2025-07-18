@@ -3,7 +3,7 @@ package tests;
 import java.util.Map;
 
 public class TestData {
-    public static final String uploadPicture = "Photo.jpeg";
+    public static final String UPLOAD_PICTURE = "Photo.jpeg";
 
     public static final String[] SUBJECT_OPTIONS = {
             "Accounting", "Maths", "Arts", "English", "Physics", "Chemistry",
@@ -15,7 +15,7 @@ public class TestData {
             "Reading", "Sports", "Music"
     };
 
-    public static final Map<String, String[]> mapStateWithCity = Map.of(
+    public static final Map<String, String[]> MAP_STATE_WITH_CITY = Map.of(
             "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
             "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
             "Haryana", new String[]{"Karnal", "Panipat"},

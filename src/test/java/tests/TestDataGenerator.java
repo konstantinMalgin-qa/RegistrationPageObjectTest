@@ -12,9 +12,6 @@ public class TestDataGenerator  {
 
     public static Faker faker = new Faker(new Locale("en-GB"));
 
-//    public String getFullUserName() {
-//        return faker.name().fullName();
-//    }
 
     public String setFirstName() {
         return faker.name().firstName();
@@ -49,11 +46,11 @@ public class TestDataGenerator  {
     }
 
     public String getState() {
-        return faker.options().option(TestData.mapStateWithCity.keySet().toArray()).toString();
+        return faker.options().option(TestData.MAP_STATE_WITH_CITY.keySet().toArray()).toString();
     }
 
     public String getCity(String state) {
-        return faker.options().option(TestData.mapStateWithCity.get(state));
+        return faker.options().option(TestData.MAP_STATE_WITH_CITY.get(state));
     }
 
     public Date getBirthday() {
@@ -73,6 +70,6 @@ public class TestDataGenerator  {
     }
 
     public String getFile() {
-        return uploadPicture;
+        return UPLOAD_PICTURE;
     }
 }
