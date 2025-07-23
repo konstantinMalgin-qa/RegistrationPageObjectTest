@@ -1,5 +1,7 @@
 package tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -13,6 +15,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
     @Test
     @Tag("DemoQa")
     void successfulFillFormTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем форму", () -> {
             registrationPage.openPage();
@@ -51,6 +54,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
     }
     @Test
     void successfulMinFormTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
             step("Открываем форму", () -> {
                         registrationPage.openPage();
@@ -73,6 +77,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
     }
     @Test
     void negativeMinFormTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем форму", () -> {
             registrationPage.openPage();
         });
