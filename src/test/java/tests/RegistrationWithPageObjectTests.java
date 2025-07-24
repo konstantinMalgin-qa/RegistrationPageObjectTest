@@ -53,6 +53,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
         });
     }
     @Test
+    @Tag("minForm")
     void successfulMinFormTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -76,6 +77,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
         });
     }
     @Test
+    @Tag("negative")
     void negativeMinFormTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем форму", () -> {

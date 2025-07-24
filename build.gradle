@@ -8,13 +8,13 @@ version = '1.0-SNAPSHOT'
 
 allure {
     report {
-        version.set("2.19.0")
+        version.set("2.29.1")
     }
     adapter {
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set("2.19.0")
+                adapterVersion.set("2.29.1")
             }
         }
     }
@@ -25,26 +25,41 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter',
+
+    testImplementation(
+    'org.junit.jupiter:junit-jupiter:5.10.0',
             "com.codeborne:selenide:7.9.3",
             'org.slf4j:slf4j-simple:2.0.7',
             'io.qameta.allure:allure-selenide:2.29.1'
+    )
 }
 
-tasks.withType(Test) {
-    useJUnitPlatform()
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
+
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
+        systemProperties(System.getProperties())
+
+        testLogging {
+            lifecycle {
+                events "started", "skipped", "failed", "standard_error", "standard_out"
+                exceptionFormat "short"
+            }
         }
     }
-}
 
-task DemoQa(type: Test) {
-    useJUnitPlatform {
-        includeTags("DemoQa")
+    task DemoQa_test(type: Test) {
+        useJUnitPlatform {
+            includeTags("DemoQa")
+        }
     }
-}
+
+    task property_test(type: Test) {
+        useJUnitPlatform {
+            includeTags("property")
+        }
+    }
