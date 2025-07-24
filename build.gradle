@@ -58,6 +58,17 @@ tasks.withType(JavaCompile) {
         }
     }
 
+task DemoQa_minform_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("minForm")
+    }
+}
+
+task DemoQa_negative_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("negative")
+    }
+}
     task property_test(type: Test) {
         useJUnitPlatform {
             includeTags("property")
