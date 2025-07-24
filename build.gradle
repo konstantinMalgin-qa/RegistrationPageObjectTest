@@ -11,6 +11,7 @@ allure {
         version.set("2.29.1")
     }
     adapter {
+        aspectjVersion.set("1.9.22.1")
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
@@ -52,7 +53,7 @@ tasks.withType(JavaCompile) {
         }
     }
 
-    task DemoQa_test(type: Test) {
+task DemoQa_test(type: Test) {
         useJUnitPlatform {
             includeTags("DemoQa")
         }
@@ -69,8 +70,8 @@ task DemoQa_negative_test(type: Test) {
         includeTags("negative")
     }
 }
-    task property_test(type: Test) {
-        useJUnitPlatform {
-            includeTags("property")
-        }
+task property_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property")
     }
+}
