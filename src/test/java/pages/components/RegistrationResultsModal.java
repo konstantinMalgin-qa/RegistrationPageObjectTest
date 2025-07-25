@@ -1,19 +1,24 @@
 package pages.components;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationResultsModal {
+    SelenideElement modalContent = $(".modal-content");
+    SelenideElement tableResponsive =
+            $(".table-responsive");
     public void verifyModalAppears() {
-        $(".modal-content").shouldHave(text("Thanks for submitting the form"));
+        modalContent.shouldHave(text("Thanks for submitting the form"));
     }
 
     public void verifyResult(String key, String value) {
-        $(".table-responsive").$(byText(key))
+        tableResponsive.$(byText(key))
                 .parent().shouldHave(text(value));
     }
     public void verifyModalAppearsNegativ() {
-        $(".modal-content").shouldNot();
+        modalContent.shouldNot();
     }
 }

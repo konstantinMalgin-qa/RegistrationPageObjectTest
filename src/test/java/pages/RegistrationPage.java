@@ -33,7 +33,6 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage removeAd() {
-
         executeJavaScript("$('footer').remove();");
         executeJavaScript("$('#fixedban').remove();");
         return this;
