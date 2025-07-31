@@ -15,8 +15,6 @@ public class RegistrationWithPageObjectTests extends TestBase {
     @Test
     @Tag("DemoQa")
     void successfulFillFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-
         step("Открываем форму", () -> {
             registrationPage.openPage();
         });
@@ -55,9 +53,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
     @Test
     @Tag("minForm")
     void successfulMinFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-
-            step("Открываем форму", () -> {
+        step("Открываем форму", () -> {
                         registrationPage.openPage();
                     });
         step("Заполняем форму полностью и отправляем", () -> {
@@ -79,7 +75,6 @@ public class RegistrationWithPageObjectTests extends TestBase {
     @Test
     @Tag("negative")
     void negativeMinFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем форму", () -> {
             registrationPage.openPage();
         });
